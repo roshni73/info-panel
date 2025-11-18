@@ -1,67 +1,83 @@
-import { Home, Database, X } from "lucide-react";
-import "./sidebar.css";
+import { useNavigate, useLocation } from 'react-router-dom';
+import { Home, Database, X } from 'lucide-react';
 
 interface SidebarProps {
-  currentPage: "home" | "data";
-  onNavigate: (page: "home" | "data") => void;
   isOpen: boolean;
   onClose: () => void;
 }
 
-export default function Sidebar({ currentPage, onNavigate, isOpen, onClose }: SidebarProps) {
-  const menuItems = [
-    { id: "home" as const, label: "Home", icon: Home },
-    { id: "data" as const, label: "Data", icon: Database },
-  ];
+export function Sidebar({ isOpen, onClose }: SidebarProps) {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleNavigate = (path: string) => {
+    navigate(path);
+    onClose(); // Close sidebar on mobile after navigation
+  };
+
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <>
-      {isOpen && <div className="sidebar-backdrop" onClick={onClose} />}
+      {/* Mobile overlay */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          onClick={onClose}
+        />
+      )}
+
+      {/* Sidebar */}
       <aside
-        className={`sidebar ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
+        className={`fixed lg:static inset-y-0 left-0 z-50 bg-[#006483] text-white w-64 min-h-screen p-6 flex flex-col transform transition-transform duration-300 ease-in-out lg:transform-none ${
+          isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+        }`}
       >
-        <div className="sidebar-header">
-          <div className="flex items-center justify-between">
-            <div className="sidebar-logo">
-              <h1 className="sidebar-title">
-                <span className="sidebar-title-info">Info</span>
-                <span className="sidebar-title-panel">Panel</span>
-              </h1>
-            </div>
-            <button
-              onClick={onClose}
-              className="md:hidden p-1 hover:bg-gray-100 rounded-lg transition-colors"
-            >
-              <X className="w-5 h-5 text-gray-700" />
-            </button>
-          </div>
+        {/* Close button for mobile */}
+        <button
+          onClick={onClose}
+          className="lg:hidden absolute top-4 right-4 text-white/80 hover:text-white"
+          aria-label="Close sidebar"
+        >
+          <X className="w-6 h-6" />
+        </button>
 
-          <p className="sidebar-subtitle">Analytics Dashboard</p>
+        {/* Brand */}
+        <div className="mb-8">
+          <h1 className="text-2xl font-bold mb-1">InfoPannel</h1>
+          <p className="text-white/70 text-sm">Dashboard Application</p>
         </div>
-        <nav className="sidebar-nav">
-          <ul className="sidebar-list">
-            {menuItems.map((item) => {
-              const Icon = item.icon;
-              const isActive = currentPage === item.id;
 
-              return (
-                <li key={item.id}>
-                  <button
-                    onClick={() => onNavigate(item.id)}
-                    className={`sidebar-item ${
-                      isActive ? "sidebar-item-active" : "sidebar-item-inactive"
-                    }`}
-                  >
-                    <Icon className="w-4 h-4" />
-                    <span className="text-sm">{item.label}</span>
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
+        {/* Navigation */}
+        <nav className="flex-1">
+          <button
+            onClick={() => handleNavigate('/home')}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors mb-2 ${
+              isActive('/home')
+                ? 'bg-[#0099A8] text-white'
+                : 'text-white/80 hover:bg-[#0099A8]/30'
+            }`}
+          >
+            <Home className="w-5 h-5" />
+            <span>Home</span>
+          </button>
+
+          <button
+            onClick={() => handleNavigate('/data')}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+              isActive('/data')
+                ? 'bg-[#0099A8] text-white'
+                : 'text-white/80 hover:bg-[#0099A8]/30'
+            }`}
+          >
+            <Database className="w-5 h-5" />
+            <span>Data</span>
+          </button>
         </nav>
-        <div className="sidebar-footer">
-          <p className="sidebar-footer-text">v1.0.0</p>
+
+        {/* Footer */}
+        <div className="mt-auto pt-6 border-t border-white/10">
+          <p className="text-xs text-white/50">© 2025 InfoPannel</p>
         </div>
       </aside>
     </>

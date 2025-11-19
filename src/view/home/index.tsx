@@ -1,30 +1,102 @@
-import React from 'react';
+import { Activity, Database, TrendingUp, Users } from "lucide-react";
 
-const Home: React.FC = () => {
+function Home() {
+  const mockUsers = [
+    { id: 1, name: 'John Doe', email: 'john@example.com' },
+    { id: 2, name: 'Jane Smith', email: 'jane@example.com' },
+    { id: 3, name: 'Bob Johnson', email: 'bob@example.com' },
+  ];
+
+  const stats = [
+    {
+      title: 'Total Users',
+      value: mockUsers.length,
+      icon: Users,
+      color: 'bg-[#0099A8]',
+    },
+    {
+      title: 'Data Sources',
+      value: 3,
+      icon: Database,
+      color: 'bg-[#006483]',
+    },
+    {
+      title: 'Active Sessions',
+      value: mockUsers.length,
+      icon: Activity,
+      color: 'bg-[#0099A8]',
+    },
+    {
+      title: 'Growth Rate',
+      value: '+12%',
+      icon: TrendingUp,
+      color: 'bg-[#006483]',
+    },
+  ];
+
   return (
     <div>
-      <h1 className="text-3xl font-bold text-gray-900 mb-4">Dashboard Overview</h1>
-      <p className="text-gray-600 mb-8">Welcome to your analytics dashboard</p>
+      <div className="mb-6 md:mb-8">
+        <h1 className="text-2xl md:text-3xl text-[#006483] mb-2">Welcome to InfoPannel</h1>
+        <p className="text-sm md:text-base text-gray-600">
+          Your comprehensive dashboard for managing and analyzing user data
+        </p>
+      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
-          <h3 className="text-lg font-medium text-gray-900 mb-2">Total Users</h3>
-          <p className="text-3xl font-bold text-[#0099A8]">1,248</p>
-          <p className="text-sm text-gray-500 mt-2">+12% from last month</p>
-        </div>
-        <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
-          <h3 className="text-lg font-medium text-gray-900 mb-2">Revenue</h3>
-          <p className="text-3xl font-bold text-[#0099A8]">$24,580</p>
-          <p className="text-sm text-gray-500 mt-2">+8% from last month</p>
-        </div>
-        <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
-          <h3 className="text-lg font-medium text-gray-900 mb-2">Conversion Rate</h3>
-          <p className="text-3xl font-bold text-[#0099A8]">3.2%</p>
-          <p className="text-sm text-gray-500 mt-2">+0.4% from last month</p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6 md:mb-8">
+        {stats.map((stat, index) => {
+          const Icon = stat.icon;
+          return (
+            <div
+              key={index}
+              className="bg-white rounded-lg shadow-md p-4 md:p-6 border border-gray-200 hover:shadow-lg transition-shadow"
+            >
+              <div className="flex items-center justify-between mb-3 md:mb-4">
+                <div className={`${stat.color} p-2 md:p-3 rounded-lg`}>
+                  <Icon className="w-5 h-5 md:w-6 md:h-6 text-white" />
+                </div>
+              </div>
+              <h3 className="text-gray-600 text-xs md:text-sm mb-1">{stat.title}</h3>
+              <p className="text-2xl md:text-3xl text-[#006483]">{stat.value}</p>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="bg-white rounded-lg shadow-md p-4 md:p-6 border border-gray-200">
+        <h2 className="text-lg md:text-xl text-[#006483] mb-3 md:mb-4">About This Dashboard</h2>
+        <div className="space-y-3 md:space-y-4 text-sm md:text-base text-gray-700">
+          <p>
+            InfoPannel is a modern dashboard application built with React and Redux,
+            designed to demonstrate best practices in state management, API integration,
+            and responsive design.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 md:mt-6">
+            <div className="border-l-4 border-[#0099A8] pl-3 md:pl-4">
+              <h3 className="text-[#006483] mb-2">Features</h3>
+              <ul className="space-y-1 text-xs md:text-sm">
+                <li>• Redux state management</li>
+                <li>• Real-time data filtering</li>
+                <li>• Pagination support</li>
+                <li>• Error handling</li>
+                <li>• Responsive design</li>
+              </ul>
+            </div>
+            <div className="border-l-4 border-[#006483] pl-3 md:pl-4">
+              <h3 className="text-[#006483] mb-2">Tech Stack</h3>
+              <ul className="space-y-1 text-xs md:text-sm">
+                <li>• React with TypeScript</li>
+                <li>• Redux Toolkit</li>
+                <li>• TailwindCSS</li>
+                <li>• JSONPlaceholder API</li>
+                <li>• Lucide Icons</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default Home;

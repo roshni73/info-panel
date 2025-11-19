@@ -12,28 +12,24 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
 
   const handleNavigate = (path: string) => {
     navigate(path);
-    onClose(); // Close sidebar on mobile after navigation
+    onClose();
   };
 
   const isActive = (path: string) => location.pathname === path;
 
   return (
     <>
-      {/* Mobile overlay */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black/50 z-40 lg:hidden"
           onClick={onClose}
         />
       )}
-
-      {/* Sidebar */}
       <aside
         className={`fixed lg:static inset-y-0 left-0 z-50 bg-[#006483] text-white w-64 min-h-screen p-6 flex flex-col transform transition-transform duration-300 ease-in-out lg:transform-none ${
           isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         }`}
       >
-        {/* Close button for mobile */}
         <button
           onClick={onClose}
           className="lg:hidden absolute top-4 right-4 text-white/80 hover:text-white"
@@ -41,14 +37,10 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         >
           <X className="w-6 h-6" />
         </button>
-
-        {/* Brand */}
         <div className="mb-8">
           <h1 className="text-2xl font-bold mb-1">InfoPannel</h1>
           <p className="text-white/70 text-sm">Dashboard Application</p>
         </div>
-
-        {/* Navigation */}
         <nav className="flex-1">
           <button
             onClick={() => handleNavigate('/home')}
@@ -74,8 +66,6 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
             <span>Data</span>
           </button>
         </nav>
-
-        {/* Footer */}
         <div className="mt-auto pt-6 border-t border-white/10">
           <p className="text-xs text-white/50">© 2025 InfoPannel</p>
         </div>

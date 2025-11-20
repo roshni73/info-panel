@@ -12,6 +12,8 @@ A modern dashboard application built with React, TypeScript, Redux Toolkit, and 
 - 🐳 Docker support for production and development
 - 🔒 Type-safe with TypeScript
 - ✅ Pre-commit hooks with Husky
+- 🌍 Environment-based configuration
+- 🛡️ Error boundary for graceful error handling
 
 ## Tech Stack
 
@@ -31,6 +33,29 @@ A modern dashboard application built with React, TypeScript, Redux Toolkit, and 
 - Node.js 20+
 - pnpm 10+
 - Docker (optional, for containerized deployment)
+
+### Environment Configuration
+
+The application uses environment variables for configuration. Create environment files based on your needs:
+
+```bash
+# Copy the example file
+cp .env.example .env.development
+
+# Or for production
+cp .env.example .env.production
+```
+
+**Available Environment Variables:**
+
+| Variable                | Description                  | Default                                |
+| ----------------------- | ---------------------------- | -------------------------------------- |
+| `VITE_API_BASE_URL`     | API base URL                 | `https://jsonplaceholder.typicode.com` |
+| `VITE_APP_NAME`         | Application name             | `InfoPanel`                            |
+| `VITE_ITEMS_PER_PAGE`   | Items per page in data table | `5`                                    |
+| `VITE_ENABLE_DEV_TOOLS` | Enable Redux DevTools        | `true`                                 |
+
+**Note:** All environment variables must be prefixed with `VITE_` to be accessible in the application.
 
 ### Local Development
 

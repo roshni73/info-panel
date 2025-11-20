@@ -1,4 +1,5 @@
 import { useAppSelector } from '@/store/hooks';
+import { APP_CONFIG } from '@/config/api';
 import {
   Users,
   Database,
@@ -105,7 +106,7 @@ function Home(): React.JSX.Element {
     <div>
       <div className="mb-6 md:mb-8">
         <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#006483] mb-1 sm:mb-2">
-          Welcome to InfoPannel
+          Welcome to {APP_CONFIG.name}
         </h1>
         <p className="text-sm md:text-base text-gray-600">
           Your comprehensive dashboard for managing and analyzing user data
@@ -251,9 +252,9 @@ function Home(): React.JSX.Element {
           <h2 className="text-lg md:text-xl text-[#006483] mb-3 md:mb-4">About This Dashboard</h2>
           <div className="space-y-3 md:space-y-4 text-sm md:text-base text-gray-700">
             <p>
-              InfoPanel is a modern dashboard application built with React and Redux, designed to
-              demonstrate best practices in state management, API integration, and responsive
-              design.
+              {APP_CONFIG.name} is a modern dashboard application built with React and Redux,
+              designed to demonstrate best practices in state management, API integration, and
+              responsive design.
             </p>
             <div className="grid grid-cols-1 gap-4 mt-4">
               <div className="border-l-4 border-[#0099A8] pl-3 md:pl-4">

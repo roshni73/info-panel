@@ -4,6 +4,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Data from '@views/data';
 import { Sidebar } from '@/Components/SideBar';
 import Home from '@views/home';
+import { APP_CONFIG } from '@/config/api';
 
 export function Layout(): React.JSX.Element {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -29,7 +30,7 @@ export function Layout(): React.JSX.Element {
             >
               <Menu className="w-6 h-6 text-gray-700" />
             </button>
-            <h1 className="text-lg text-[#006483]">InfoPanel</h1>
+            <h1 className="text-lg text-[#006483]">{APP_CONFIG.name}</h1>
             <div className="w-10" />
           </div>
         </div>

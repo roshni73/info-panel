@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
+import { API_CONFIG, APP_CONFIG } from '@/config/api';
 
 export interface User {
   id: number;
@@ -27,12 +28,13 @@ const initialState: UsersState = {
   error: null,
   searchQuery: '',
   currentPage: 1,
-  itemsPerPage: 5,
+  itemsPerPage: APP_CONFIG.itemsPerPage,
 };
 
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async (_, { rejectWithValue }) => {
   try {
-    const res = await fetch('https://jsonplaceholder.typicode.com/users');
+    const url = `${API_CONFIG.baseUrl}${API_CONFIG.endpoints.users}`;
+    const res = await fetch(url);
     if (!res.ok) throw new Error('Failed to fetch users');
     const data: User[] = await res.json();
     return data;

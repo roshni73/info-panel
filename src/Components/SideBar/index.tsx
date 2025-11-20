@@ -1,6 +1,7 @@
 import { useCallback, memo } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Home, Database, X } from 'lucide-react';
+import { APP_CONFIG } from '@/config/api';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -37,7 +38,7 @@ export const Sidebar = memo(function Sidebar({ isOpen, onClose }: SidebarProps) 
           <X className="w-6 h-6" />
         </button>
         <div className="mb-8">
-          <h1 className="text-2xl font-bold mb-1">InfoPanel</h1>
+          <h1 className="text-2xl font-bold mb-1">{APP_CONFIG.name}</h1>
           <p className="text-white/70 text-sm">Dashboard Application</p>
         </div>
         <nav className="flex-1">
@@ -64,7 +65,7 @@ export const Sidebar = memo(function Sidebar({ isOpen, onClose }: SidebarProps) 
           </button>
         </nav>
         <div className="mt-auto pt-6 border-t border-white/10">
-          <p className="text-xs text-white/50">© 2025 InfoPanel</p>
+          <p className="text-xs text-white/50">© 2025 {APP_CONFIG.name}</p>
         </div>
       </aside>
     </>

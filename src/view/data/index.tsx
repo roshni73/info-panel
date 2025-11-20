@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 import { AlertCircle, Loader2, Search, Download } from 'lucide-react';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { fetchUsers, setCurrentPage, setSearchQuery } from '../../store/usersSlice';
-import { Alert, AlertDescription, AlertTitle } from '../../components/Alert';
-import { Input } from '../../components/Input';
-import { Pagination } from '../../components/Pagination';
+
+import { Pagination } from '@/Components/Pagination';
+import { Input } from '@/Components/Input';
+import { Alert, AlertDescription, AlertTitle } from '@/Components/Alert';
+import { fetchUsers, setCurrentPage, setSearchQuery } from '@/store/usersSlice';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 
 
 export default function DataTable() {

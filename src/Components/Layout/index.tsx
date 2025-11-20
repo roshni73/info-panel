@@ -1,22 +1,30 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { Menu } from 'lucide-react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import Data from '../../view/data';
-import { Sidebar } from '../SideBar';
-import Home from '../../view/home';
+import Data from '@views/data';
+import { Sidebar } from '@/Components/SideBar';
+import Home from '@views/home';
 
 export function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
+  const handleCloseSidebar = useCallback(() => {
+    setSidebarOpen(false);
+  }, []);
+
+  const handleOpenSidebar = useCallback(() => {
+    setSidebarOpen(true);
+  }, []);
+
   return (
     <div className="flex min-h-screen bg-gray-50">
-      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <Sidebar isOpen={sidebarOpen} onClose={handleCloseSidebar} />
 
-      <main >
+      <main className="flex-1 w-full">
         <div className="lg:hidden bg-white border-b border-gray-200 px-4 py-3 sticky top-0 z-30">
           <div className="flex items-center justify-between">
             <button
-              onClick={() => setSidebarOpen(true)}
+              onClick={handleOpenSidebar}
               className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
               aria-label="Open sidebar"
             >

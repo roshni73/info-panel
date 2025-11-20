@@ -30,7 +30,6 @@ const initialState: UsersState = {
   itemsPerPage: 5,
 };
 
-// Async thunk to fetch users
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async (_, { rejectWithValue }) => {
   try {
     const res = await fetch('https://jsonplaceholder.typicode.com/users');

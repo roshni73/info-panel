@@ -11,24 +11,23 @@ export const Sidebar = memo(function Sidebar({ isOpen, onClose }: SidebarProps) 
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleNavigate = useCallback((path: string) => {
-    navigate(path);
-    onClose();
-  }, [navigate, onClose]);
+  const handleNavigate = useCallback(
+    (path: string) => {
+      navigate(path);
+      onClose();
+    },
+    [navigate, onClose]
+  );
 
   const isActive = useCallback((path: string) => location.pathname === path, [location.pathname]);
 
   return (
     <>
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
-          onClick={onClose}
-        />
-      )}
+      {isOpen && <div className="fixed inset-0 bg-black/50 z-40 lg:hidden" onClick={onClose} />}
       <aside
-        className={`fixed lg:static inset-y-0 left-0 z-50 bg-[#006483] text-white w-64 min-h-screen p-6 flex flex-col transform transition-transform duration-300 ease-in-out lg:transform-none ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
-          }`}
+        className={`fixed lg:static inset-y-0 left-0 z-50 bg-[#006483] text-white w-64 min-h-screen p-6 flex flex-col transform transition-transform duration-300 ease-in-out lg:transform-none ${
+          isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+        }`}
       >
         <button
           onClick={onClose}
@@ -45,10 +44,9 @@ export const Sidebar = memo(function Sidebar({ isOpen, onClose }: SidebarProps) 
           <button
             onClick={() => handleNavigate('/home')}
             aria-current={isActive('/home') ? 'page' : undefined}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors mb-2 ${isActive('/home')
-              ? 'bg-[#0099A8] text-white'
-              : 'text-white/80 hover:bg-[#0099A8]/30'
-              }`}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors mb-2 ${
+              isActive('/home') ? 'bg-[#0099A8] text-white' : 'text-white/80 hover:bg-[#0099A8]/30'
+            }`}
           >
             <Home className="w-5 h-5" />
             <span>Home</span>
@@ -57,10 +55,9 @@ export const Sidebar = memo(function Sidebar({ isOpen, onClose }: SidebarProps) 
           <button
             onClick={() => handleNavigate('/data')}
             aria-current={isActive('/data') ? 'page' : undefined}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${isActive('/data')
-              ? 'bg-[#0099A8] text-white'
-              : 'text-white/80 hover:bg-[#0099A8]/30'
-              }`}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+              isActive('/data') ? 'bg-[#0099A8] text-white' : 'text-white/80 hover:bg-[#0099A8]/30'
+            }`}
           >
             <Database className="w-5 h-5" />
             <span>Data</span>

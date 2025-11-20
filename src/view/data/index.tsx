@@ -7,8 +7,7 @@ import { Alert, AlertDescription, AlertTitle } from '@/Components/Alert';
 import { fetchUsers, setCurrentPage, setSearchQuery } from '@/store/usersSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 
-
-export default function DataTable() {
+function Data(): React.JSX.Element {
   const dispatch = useAppDispatch();
   const { filteredUsers, loading, error, searchQuery, currentPage, itemsPerPage } = useAppSelector(
     (state) => state.users
@@ -31,8 +30,8 @@ export default function DataTable() {
     const headers = ['ID', 'Name', 'Email', 'Company', 'City', 'Phone'];
     const csvContent = [
       headers.join(','),
-      ...filteredUsers.map(
-        (u) => [u.id, u.name, u.email, u.company?.name, u.address?.city, u.phone].join(',')
+      ...filteredUsers.map((u) =>
+        [u.id, u.name, u.email, u.company?.name, u.address?.city, u.phone].join(',')
       ),
     ].join('\n');
 
@@ -57,9 +56,7 @@ export default function DataTable() {
         <Alert variant="destructive">
           <AlertCircle className="w-4 h-4" />
           <AlertTitle>Error</AlertTitle>
-          <AlertDescription>
-            {error}. Please try again or contact support.
-          </AlertDescription>
+          <AlertDescription>{error}. Please try again or contact support.</AlertDescription>
         </Alert>
         <button
           onClick={() => dispatch(fetchUsers())}
@@ -74,9 +71,7 @@ export default function DataTable() {
     <div>
       <div className="mb-6 md:mb-8">
         <h1 className="text-2xl md:text-3xl text-[#006483] mb-2">User Data</h1>
-        <p className="text-sm md:text-base text-gray-600">
-          Browse and search through user records
-        </p>
+        <p className="text-sm md:text-base text-gray-600">Browse and search through user records</p>
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-200">
@@ -134,8 +129,12 @@ export default function DataTable() {
                     <td className="px-3 sm:px-6 py-3 text-sm text-gray-900 truncate max-w-[120px] sm:max-w-none">
                       {user.company?.name}
                     </td>
-                    <td className="px-3 sm:px-6 py-3 text-sm text-gray-600">{user.address?.city}</td>
-                    <td className="px-3 sm:px-6 py-3 text-sm text-gray-600 whitespace-nowrap">{user.phone}</td>
+                    <td className="px-3 sm:px-6 py-3 text-sm text-gray-600">
+                      {user.address?.city}
+                    </td>
+                    <td className="px-3 sm:px-6 py-3 text-sm text-gray-600 whitespace-nowrap">
+                      {user.phone}
+                    </td>
                   </tr>
                 ))
               )}
@@ -149,7 +148,11 @@ export default function DataTable() {
                 Showing {startIndex + 1} to {Math.min(endIndex, filteredUsers.length)} of{' '}
                 {filteredUsers.length} results
               </p>
-              <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+              />
             </div>
           </div>
         )}
@@ -157,3 +160,4 @@ export default function DataTable() {
     </div>
   );
 }
+export default Data;

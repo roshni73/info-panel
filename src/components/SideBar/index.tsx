@@ -38,7 +38,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           <X className="w-6 h-6" />
         </button>
         <div className="mb-8">
-          <h1 className="text-2xl font-bold mb-1">InfoPannel</h1>
+          <h1 className="text-2xl font-bold mb-1">InfoPanel</h1>
           <p className="text-white/70 text-sm">Dashboard Application</p>
         </div>
         <nav className="flex-1">
@@ -67,7 +67,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           </button>
         </nav>
         <div className="mt-auto pt-6 border-t border-white/10">
-          <p className="text-xs text-white/50">© 2025 InfoPannel</p>
+          <p className="text-xs text-white/50">© 2025 InfoPanel</p>
         </div>
       </aside>
     </>

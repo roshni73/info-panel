@@ -37,7 +37,7 @@ function Home() {
   return (
     <div>
       <div className="mb-6 md:mb-8">
-        <h1 className="text-2xl md:text-3xl text-[#006483] mb-2">Welcome to InfoPannel</h1>
+        <h1 className="text-2xl md:text-3xl text-[#006483] mb-2">Welcome to InfoPanel</h1>
         <p className="text-sm md:text-base text-gray-600">
           Your comprehensive dashboard for managing and analyzing user data
         </p>
@@ -67,7 +67,7 @@ function Home() {
         <h2 className="text-lg md:text-xl text-[#006483] mb-3 md:mb-4">About This Dashboard</h2>
         <div className="space-y-3 md:space-y-4 text-sm md:text-base text-gray-700">
           <p>
-            InfoPannel is a modern dashboard application built with React and Redux,
+            InfoPanel is a modern dashboard application built with React and Redux,
             designed to demonstrate best practices in state management, API integration,
             and responsive design.
           </p>

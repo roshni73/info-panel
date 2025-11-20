@@ -22,7 +22,7 @@ export function Layout() {
             >
               <Menu className="w-6 h-6 text-gray-700" />
             </button>
-            <h1 className="text-lg text-[#006483]">InfoPannel</h1>
+            <h1 className="text-lg text-[#006483]">InfoPanel</h1>
             <div className="w-10" />
           </div>
         </div>

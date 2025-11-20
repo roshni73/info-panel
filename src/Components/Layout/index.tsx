@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react';
 import { Menu } from 'lucide-react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Data from '@views/data';
-import { Sidebar } from '@components/SideBar';
+import { Sidebar } from '@/Components/SideBar';
 import Home from '@views/home';
 
 export function Layout(): React.JSX.Element {

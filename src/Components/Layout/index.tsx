@@ -17,11 +17,10 @@ export function Layout(): React.JSX.Element {
   }, []);
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="flex h-screen bg-gray-50">
       <Sidebar isOpen={sidebarOpen} onClose={handleCloseSidebar} />
-
-      <main className="flex-1 w-full">
-        <div className="lg:hidden bg-white border-b border-gray-200 px-4 py-3 sticky top-0 z-30">
+      <main className="flex-1 flex flex-col min-h-0">
+        <div className="lg:hidden bg-white border-b border-gray-200 px-4 py-3 sticky top-0 z-30 shrink-0">
           <div className="flex items-center justify-between">
             <button
               onClick={handleOpenSidebar}
@@ -34,9 +33,8 @@ export function Layout(): React.JSX.Element {
             <div className="w-10" />
           </div>
         </div>
-
-        <div className="p-4 md:p-6 lg:p-8">
-          <div>
+        <div className="flex-1 overflow-auto">
+          <div className="p-4 md:p-6 lg:p-8">
             <Routes>
               <Route path="/" element={<Navigate to="/home" replace />} />
               <Route path="/home" element={<Home />} />

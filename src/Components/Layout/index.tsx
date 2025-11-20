@@ -2,10 +2,10 @@ import { useState, useCallback } from 'react';
 import { Menu } from 'lucide-react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Data from '@views/data';
-import { Sidebar } from '@/Components/SideBar';
+import { Sidebar } from '@components/SideBar';
 import Home from '@views/home';
 
-export function Layout() {
+export function Layout(): React.JSX.Element {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const handleCloseSidebar = useCallback(() => {

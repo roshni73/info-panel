@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Menu } from 'lucide-react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import Data from '../../view/data';
-import { Sidebar } from '../SideBar';
-import Home from '../../view/home';
+import Data from '@views/data';
+import { Sidebar } from '@components/SideBar';
+import Home from '@views/home';
 
 export function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);

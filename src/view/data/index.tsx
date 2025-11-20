@@ -5,7 +5,7 @@ import { Pagination } from '@/Components/Pagination';
 import { Input } from '@/Components/Input';
 import { Alert, AlertDescription, AlertTitle } from '@/Components/Alert';
 import { fetchUsers, setCurrentPage, setSearchQuery } from '@/store/usersSlice';
-import { useAppDispatch } from '@/store/hooks';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 
 
 export default function DataTable() {

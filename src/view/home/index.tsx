@@ -1,28 +1,26 @@
-import { Activity, Database, TrendingUp, Users } from "lucide-react";
 
-function Home() {
-  const mockUsers = [
-    { id: 1, name: 'John Doe', email: 'john@example.com' },
-    { id: 2, name: 'Jane Smith', email: 'jane@example.com' },
-    { id: 3, name: 'Bob Johnson', email: 'bob@example.com' },
-  ];
+import { useAppSelector } from '@/store/hooks';
+import { Users, Database, Activity, TrendingUp } from 'lucide-react';
+
+export default function Home() {
+  const { users, loading } = useAppSelector((state) => state.users);
 
   const stats = [
     {
       title: 'Total Users',
-      value: mockUsers.length,
+      value: users.length,
       icon: Users,
       color: 'bg-[#0099A8]',
     },
     {
       title: 'Data Sources',
-      value: 3,
+      value: 1,
       icon: Database,
       color: 'bg-[#006483]',
     },
     {
       title: 'Active Sessions',
-      value: mockUsers.length,
+      value: loading ? '...' : users.length,
       icon: Activity,
       color: 'bg-[#0099A8]',
     },
@@ -37,7 +35,7 @@ function Home() {
   return (
     <div>
       <div className="mb-6 md:mb-8">
-        <h1 className="text-2xl md:text-3xl text-[#006483] mb-2">Welcome to InfoPanel</h1>
+        <h1 className="text-2xl md:text-3xl text-[#006483] mb-2">Welcome to InfoPannel</h1>
         <p className="text-sm md:text-base text-gray-600">
           Your comprehensive dashboard for managing and analyzing user data
         </p>
@@ -67,7 +65,7 @@ function Home() {
         <h2 className="text-lg md:text-xl text-[#006483] mb-3 md:mb-4">About This Dashboard</h2>
         <div className="space-y-3 md:space-y-4 text-sm md:text-base text-gray-700">
           <p>
-            InfoPanel is a modern dashboard application built with React and Redux,
+            InfoPannel is a modern dashboard application built with React and Redux,
             designed to demonstrate best practices in state management, API integration,
             and responsive design.
           </p>
@@ -98,5 +96,3 @@ function Home() {
     </div>
   );
 }
-
-export default Home;

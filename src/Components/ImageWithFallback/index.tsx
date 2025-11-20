@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState, useCallback, memo } from 'react';
 
 interface ImageWithFallbackProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   fallbackSrc?: string;
 }
 
-export function ImageWithFallback({
+export const ImageWithFallback = memo(function ImageWithFallback({
   src,
   alt,
   className = '',
@@ -13,9 +13,9 @@ export function ImageWithFallback({
 }: ImageWithFallbackProps) {
   const [error, setError] = useState(false);
 
-  const handleError = () => {
+  const handleError = useCallback(() => {
     setError(true);
-  };
+  }, []);
 
   return (
     <img
@@ -26,4 +26,4 @@ export function ImageWithFallback({
       {...props}
     />
   );
-}
+});

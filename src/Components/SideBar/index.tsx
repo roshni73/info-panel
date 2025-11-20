@@ -1,3 +1,4 @@
+import { useCallback, memo } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Home, Database, X } from 'lucide-react';
 
@@ -6,16 +7,16 @@ interface SidebarProps {
   onClose: () => void;
 }
 
-export function Sidebar({ isOpen, onClose }: SidebarProps) {
+export const Sidebar = memo(function Sidebar({ isOpen, onClose }: SidebarProps) {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleNavigate = (path: string) => {
+  const handleNavigate = useCallback((path: string) => {
     navigate(path);
     onClose();
-  };
+  }, [navigate, onClose]);
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = useCallback((path: string) => location.pathname === path, [location.pathname]);
 
   return (
     <>
@@ -26,9 +27,8 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         />
       )}
       <aside
-        className={`fixed lg:static inset-y-0 left-0 z-50 bg-[#006483] text-white w-64 min-h-screen p-6 flex flex-col transform transition-transform duration-300 ease-in-out lg:transform-none ${
-          isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
-        }`}
+        className={`fixed lg:static inset-y-0 left-0 z-50 bg-[#006483] text-white w-64 min-h-screen p-6 flex flex-col transform transition-transform duration-300 ease-in-out lg:transform-none ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+          }`}
       >
         <button
           onClick={onClose}
@@ -44,11 +44,11 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         <nav className="flex-1">
           <button
             onClick={() => handleNavigate('/home')}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors mb-2 ${
-              isActive('/home')
-                ? 'bg-[#0099A8] text-white'
-                : 'text-white/80 hover:bg-[#0099A8]/30'
-            }`}
+            aria-current={isActive('/home') ? 'page' : undefined}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors mb-2 ${isActive('/home')
+              ? 'bg-[#0099A8] text-white'
+              : 'text-white/80 hover:bg-[#0099A8]/30'
+              }`}
           >
             <Home className="w-5 h-5" />
             <span>Home</span>
@@ -56,11 +56,11 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
 
           <button
             onClick={() => handleNavigate('/data')}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-              isActive('/data')
-                ? 'bg-[#0099A8] text-white'
-                : 'text-white/80 hover:bg-[#0099A8]/30'
-            }`}
+            aria-current={isActive('/data') ? 'page' : undefined}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${isActive('/data')
+              ? 'bg-[#0099A8] text-white'
+              : 'text-white/80 hover:bg-[#0099A8]/30'
+              }`}
           >
             <Database className="w-5 h-5" />
             <span>Data</span>
@@ -72,4 +72,4 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
       </aside>
     </>
   );
-}
+});

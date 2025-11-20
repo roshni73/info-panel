@@ -1,4 +1,5 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Button } from '../Button';
 
 interface PaginationProps {
   currentPage: number;
@@ -13,33 +14,34 @@ export function Pagination({ currentPage, totalPages, onPageChange }: Pagination
 
   return (
     <nav className="flex items-center gap-1">
-      <button
+      <Button
+        variant="outline"
+        size="icon"
         onClick={() => onPageChange(Math.max(currentPage - 1, 1))}
-        className="px-2 py-1 border rounded hover:bg-gray-100 disabled:opacity-50"
         disabled={currentPage === 1}
       >
         <ChevronLeft className="w-4 h-4" />
-      </button>
+      </Button>
 
+      {/* Page number buttons */}
       {pages.map((page) => (
-        <button
+        <Button
           key={page}
+          variant={page === currentPage ? 'default' : 'outline'}
+          size="sm"
           onClick={() => onPageChange(page)}
-          className={`px-3 py-1 border rounded ${
-            page === currentPage ? 'bg-blue-500 text-white' : 'hover:bg-gray-100'
-          }`}
         >
           {page}
-        </button>
+        </Button>
       ))}
-
-      <button
+      <Button
+        variant="outline"
+        size="icon"
         onClick={() => onPageChange(Math.min(currentPage + 1, totalPages))}
-        className="px-2 py-1 border rounded hover:bg-gray-100 disabled:opacity-50"
         disabled={currentPage === totalPages}
       >
         <ChevronRight className="w-4 h-4" />
-      </button>
+      </Button>
     </nav>
   );
 }

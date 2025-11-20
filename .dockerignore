@@ -1,0 +1,39 @@
+# Docker
+.dockerignore
+Dockerfile
+docker-compose.yml
+
+# Dependencies
+node_modules
+dist
+build
+
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# CI/CD
+.github
+
+# Development
+README.md
+.prettierrc
+.prettierignore
+.husky

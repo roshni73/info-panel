@@ -1,73 +1,129 @@
-# React + TypeScript + Vite
+# InfoPanel - React Dashboard Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern dashboard application built with React, TypeScript, Redux Toolkit, and TailwindCSS.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🎨 Modern UI with TailwindCSS
+- 🔄 State management with Redux Toolkit
+- 🚀 Fast development with Vite
+- 📱 Responsive design
+- 🔍 ESLint + Prettier for code quality
+- 🐳 Docker support for production and development
+- 🔒 Type-safe with TypeScript
+- ✅ Pre-commit hooks with Husky
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Framework**: React 19
+- **Language**: TypeScript
+- **Build Tool**: Vite
+- **State Management**: Redux Toolkit
+- **Routing**: React Router DOM
+- **Styling**: TailwindCSS
+- **Icons**: Lucide React
+- **Code Quality**: ESLint, Prettier, Husky, lint-staged
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Node.js 20+
+- pnpm 10+
+- Docker (optional, for containerized deployment)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Local Development
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+# Install dependencies
+pnpm install
+
+# Start development server
+pnpm dev
+
+# Build for production
+pnpm build
+
+# Preview production build
+pnpm preview
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Code Quality
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+# Run linter
+pnpm lint
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Fix linting issues
+pnpm lint:fix
+
+# Check formatting
+pnpm format:check
+
+# Format code
+pnpm format
+
+# Type check
+pnpm exec tsc --noEmit
 ```
+
+## Docker Deployment
+
+### Production Deployment
+
+**Using Docker CLI:**
+
+```bash
+# Build production image
+docker buildx build --target production -t infopanel:latest .
+
+# Run production container
+docker run -d -p 80:80 --name infopanel infopanel:latest
+
+# View logs
+docker logs -f infopanel
+
+# Stop and remove container
+docker stop infopanel && docker rm infopanel
+
+```
+
+**Access the application:** `http://localhost`
+
+### Development with Docker
+
+**Using Docker CLI:**
+
+```bash
+# Build development image
+docker buildx build --target development -t infopanel:dev .
+
+# Run development container with volume mounts
+docker run -d \
+  -p 3000:3000 \
+  -v $(pwd)/src:/app/src \
+  -v $(pwd)/public:/app/public \
+  --name infopanel-dev \
+  infopanel:dev
+
+# View logs
+docker logs -f infopanel-dev
+
+# Stop and remove container
+docker stop infopanel-dev && docker rm infopanel-dev
+```
+
+**Access the development server:** `http://localhost:3000`
+
+## CI/CD
+
+GitHub Actions workflow automatically runs on every push to `feature` branch:
+
+- ✅ ESLint checks
+- ✅ Prettier formatting validation
+- ✅ TypeScript type checking
+- ✅ Production build verification
+
+## License
+
+MIT
